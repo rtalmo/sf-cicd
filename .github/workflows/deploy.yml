@@ -3,6 +3,10 @@ on:
     branches:
     - main  
 
+env:
+  AZURE_WEBAPP_NAME: salesforce-demo3
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+
 jobs:
   build-and-deploy:
     name: Build app and deploy to Azure
@@ -13,3 +17,11 @@ jobs:
         run:
           # build the app using npm - grabs node_modules library packs needed for the build
           npm install
+
+      - name: Deploy to Azure service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} 
+
