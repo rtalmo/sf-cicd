@@ -1,0 +1,8 @@
+jobs:
+  build-and-deploy:
+    name: Build app and deploy to Azure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Demo
+        run:
+          echo "I got the script to run"
